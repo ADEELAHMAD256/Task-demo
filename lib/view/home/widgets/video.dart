@@ -18,63 +18,75 @@ class Video extends StatelessWidget {
       builder: (videoController) {
         return Stack(
           children: [
-            videoController.postListData[index].videoPlayerController!.value
-                    .isInitialized
-                ? Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                    child: PageView.builder(
-                      itemCount:
-                          videoController.postListData[index].images?.length,
-                      onPageChanged: (currentPage) {
-                        videoController.currentPageIndex = currentPage;
-                        videoController.update();
-                      },
-                      itemBuilder: (context, pageIndex) {
-                        return pageIndex == 0
-                            ? AspectRatio(
-                                aspectRatio: videoController.postListData[index]
-                                    .videoPlayerController!.value.aspectRatio,
-                                child: InkWell(
-                                  onTap: () {
-                                    final VideoPlayerController
-                                        videoPlayerController = videoController
-                                            .postListData[index]
-                                            .videoPlayerController!;
-                                    if (videoPlayerController.value.isPlaying) {
-                                      videoPlayerController.pause();
-                                    } else if (videoPlayerController
-                                        .value.isCompleted) {
-                                      videoPlayerController.play();
-                                    } else {
-                                      videoPlayerController.play();
-                                    }
-                                  },
-                                  child: VideoPlayer(videoController
-                                      .postListData[index]
-                                      .videoPlayerController!),
-                                ),
-                              )
-                            : Image.network(
-                                videoController.postListData[index]
-                                    .images![pageIndex].image!,
-                                errorBuilder: (BuildContext context,
-                                    Object exception, StackTrace? stackTrace) {
-                                  return const Center(
-                                    child: CustomTextUrbanist(
-                                      text: "NO Image Found",
-                                      fontSize: 25,
-                                      color: Colors.black,
-                                    ),
-                                  ); // Path to your placeholder image
-                                },
-                              );
-                      },
+            videoController.postListData[index].videoPlayerController == null
+                ? Center(
+                    child: CustomTextUrbanist(
+                      text: "Some error occure",
+                      color: Colors.black,
                     ),
                   )
-                : const Center(child: CircularProgressIndicator()),
+                : videoController.postListData[index].videoPlayerController!
+                        .value.isInitialized
+                    ? Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        child: PageView.builder(
+                          itemCount: videoController
+                              .postListData[index].images?.length,
+                          onPageChanged: (currentPage) {
+                            videoController.currentPageIndex = currentPage;
+                            videoController.update();
+                          },
+                          itemBuilder: (context, pageIndex) {
+                            return pageIndex == 0
+                                ? AspectRatio(
+                                    aspectRatio: videoController
+                                        .postListData[index]
+                                        .videoPlayerController!
+                                        .value
+                                        .aspectRatio,
+                                    child: InkWell(
+                                      onTap: () {
+                                        final VideoPlayerController
+                                            videoPlayerController =
+                                            videoController.postListData[index]
+                                                .videoPlayerController!;
+                                        if (videoPlayerController
+                                            .value.isPlaying) {
+                                          videoPlayerController.pause();
+                                        } else if (videoPlayerController
+                                            .value.isCompleted) {
+                                          videoPlayerController.play();
+                                        } else {
+                                          videoPlayerController.play();
+                                        }
+                                      },
+                                      child: VideoPlayer(videoController
+                                          .postListData[index]
+                                          .videoPlayerController!),
+                                    ),
+                                  )
+                                : Image.network(
+                                    videoController.postListData[index]
+                                        .images![pageIndex].image!,
+                                    errorBuilder: (BuildContext context,
+                                        Object exception,
+                                        StackTrace? stackTrace) {
+                                      return const Center(
+                                        child: CustomTextUrbanist(
+                                          text: "NO Image Found",
+                                          fontSize: 25,
+                                          color: Colors.black,
+                                        ),
+                                      ); // Path to your placeholder image
+                                    },
+                                  );
+                          },
+                        ),
+                      )
+                    : const Center(child: CircularProgressIndicator()),
             Positioned(
               top: 20.h,
               left: 0,
