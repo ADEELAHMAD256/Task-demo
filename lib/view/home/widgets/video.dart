@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_project/controller/home_controller.dart';
+import 'package:task_project/utils/custom_text.dart';
 import 'package:task_project/view/home/widgets/right_side_widget.dart';
 import 'package:task_project/view/home/widgets/top_center_widget.dart';
 import 'package:video_player/video_player.dart';
@@ -56,8 +57,20 @@ class Video extends StatelessWidget {
                                       .videoPlayerController!),
                                 ),
                               )
-                            : Image.network(videoController
-                                .postListData[index].images![pageIndex].image!);
+                            : Image.network(
+                                videoController.postListData[index]
+                                    .images![pageIndex].image!,
+                                errorBuilder: (BuildContext context,
+                                    Object exception, StackTrace? stackTrace) {
+                                  return const Center(
+                                    child: CustomTextUrbanist(
+                                      text: "NO Image Found",
+                                      fontSize: 25,
+                                      color: Colors.black,
+                                    ),
+                                  ); // Path to your placeholder image
+                                },
+                              );
                       },
                     ),
                   )
