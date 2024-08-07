@@ -35,6 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     controller.currentPageIndex = 0;
                     controller.currentVideoIndex = index;
                     controller.handlePageChange(controller.currentVideoIndex);
+                    controller.postListData[index - 1].videoPlayerController!
+                        .pause();
                     controller.update();
                   },
                   itemBuilder: (context, index) => Video(index: index),
