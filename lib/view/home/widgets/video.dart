@@ -19,9 +19,9 @@ class Video extends StatelessWidget {
         return Stack(
           children: [
             videoController.postListData[index].videoPlayerController == null
-                ? Center(
+                ? const Center(
                     child: CustomTextUrbanist(
-                      text: "Some error occure",
+                      text: "Some error Accured",
                       color: Colors.black,
                     ),
                   )

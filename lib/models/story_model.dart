@@ -18,10 +18,10 @@ class StoriesModel {
 }
 
 List<StoriesModel> storiesList = [
-  StoriesModel(image: "assets/images/ProfilePic1.png", title: "Add Listing"),
-  StoriesModel(image: "assets/images/ProfilePic.png", title: "Add Listing"),
-  StoriesModel(image: "assets/images/ProfilePic1.png", title: "Add Listing"),
-  StoriesModel(image: "assets/images/ProfilePic.png", title: "Add Listing"),
-  StoriesModel(image: "assets/images/ProfilePic1.png", title: "Add Listing"),
-  StoriesModel(image: "assets/images/ProfilePic.png", title: "Add Listing"),
+  StoriesModel(image: "assets/images/ProfilePic1.png", title: "Electronics"),
+  StoriesModel(image: "assets/images/ProfilePic.png", title: "Appliances"),
+  StoriesModel(image: "assets/images/ProfilePic1.png", title: "Electronics"),
+  StoriesModel(image: "assets/images/ProfilePic.png", title: "Appliances"),
+  StoriesModel(image: "assets/images/ProfilePic1.png", title: "Electronics"),
+  StoriesModel(image: "assets/images/ProfilePic.png", title: "Appliances"),
 ];
